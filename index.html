@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Basic HTML Page</title>
+    <!-- You can link your CSS files here -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- You can embed your CSS styles here -->
+    <style>
+        /* Your CSS styles go here */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: lightgrey;
+        }
+
+        #app {
+            display: flex;
+        }
+
+        #test {
+            display: flex;
+            margin: 0px 10px;
+            flex-direction: column;
+        }
+
+        nav {
+            padding: 20px;
+            width: 500px;
+            height: 100vh;
+            background-color: white;
+            display: none;
+        }
+
+        nav h1 {
+            margin: 10px 0px;
+        }
+
+        #h1Button {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .visible {
+            display: block;
+        }
+
+        #button1 {
+            position: fixed;
+            right: 40px;
+            top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <nav>
+                <div id="h1Button">
+                    <h1>Welcome to My Website</h1>
+                    <button type="button" id="removeSideBar">x</button>
+                    </div>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Projects</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+            </nav>
+        </header>
+        <button type="button" id="button1">Klik hier</button>
+        <div id="test">
+            <main>
+                <h2>Main Content Area</h2>
+                <p>This is the main content of my page.</p>
+                <img src="example.jpg" alt="Example Image">
+            </main>
+
+            <footer>
+                <p>&copy; 2024 My Website. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        const button = document.querySelector('#button1');
+        const nav1 = document.querySelector('header nav');
+        const remove = document.querySelector('#removeSideBar');
+        button.addEventListener('click', () => {
+            nav1.classList.toggle('visible');
+        });
+        remove.addEventListener('click', () => {
+            nav1.classList.remove('visible');
+        })
+    </script>
+</body>
+
+</html>
