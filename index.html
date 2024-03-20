@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Basic HTML Page</title>
     <!-- You can link your CSS files here -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
     <!-- You can embed your CSS styles here -->
     <style>
         /* Your CSS styles go here */
@@ -89,7 +89,7 @@
                     <input type="text" id="City" name="City">
                     <button id="inputButton">Submit</button>
                 </div><br>
-                <img src="example.jpg" alt="Example Image">
+                <!-- <img src="example.jpg" alt="Example Image"> -->
             </main>
 
             <footer>
@@ -98,20 +98,7 @@
         </div>
     </div>
 
-    <script>
-        const button = document.querySelector('#button1');
-        const remove = document.querySelector('#removeSidebar');
-        const nav1 = document.querySelector('header nav');
-        button.addEventListener('click', () => {
-            nav1.classList.toggle('visible');
-        });
-        remove.addEventListener('click', () => {
-            nav1.classList.remove('visible');
-        });
-
-        // Weather API
-        // https://open-meteo.com/en/docs/#latitude=52.3025&longitude=4.6889&hourly=&daily=weather_code,precipitation_sum&timezone=Europe%2FBerlin
-    </script>
+    <script src="new.js" type="module"></script>
 </body>
 
 </html>
