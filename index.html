@@ -20,18 +20,18 @@
             display: flex;
         }
 
-        #test {
+        #mainContent {
             display: flex;
             margin: 0px 10px;
             flex-direction: column;
         }
 
         nav {
+            display: none;
             padding: 20px;
             width: 40vh;
             height: 100vh;
             background-color: white;
-            display: none;
         }
 
         nav h1 {
@@ -52,6 +52,12 @@
             right: 40px;
             top: 30px;
         }
+
+        #userInput {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
     </style>
 </head>
 
@@ -61,21 +67,28 @@
             <nav>
                 <div id="h1Button">
                     <h1>Welcome to My Website</h1>
-                    <button type="button" id="removeSideBar">x</button>
-                    </div>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
+                    <button type="button" id="removeSidebar">x</button>
+                </div>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
             </nav>
         </header>
         <button type="button" id="button1">Klik hier</button>
-        <div id="test">
+        <div id="mainContent">
             <main>
                 <h2>Main Content Area</h2>
                 <p>This is the main content of my page.</p>
+                <div id="userInput">
+                    <label for="Country">Country:</label>
+                    <input type="text" id="Country" name="Country"><br><br>
+                    <label for="City">City:</label>
+                    <input type="text" id="City" name="City"><br><br>
+                    <button id="inputButton">Submit</button>
+                </div><br>
                 <img src="example.jpg" alt="Example Image">
             </main>
 
@@ -88,13 +101,16 @@
     <script>
         const button = document.querySelector('#button1');
         const nav1 = document.querySelector('header nav');
-        const remove = document.querySelector('#removeSideBar');
+        const remove = document.querySelector('#removeSidebar');
         button.addEventListener('click', () => {
             nav1.classList.toggle('visible');
         });
         remove.addEventListener('click', () => {
             nav1.classList.remove('visible');
         });
+
+        // Weather API
+        // https://open-meteo.com/en/docs/#latitude=52.3025&longitude=4.6889&hourly=&daily=weather_code,precipitation_sum&timezone=Europe%2FBerlin
     </script>
 </body>
 
