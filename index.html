@@ -83,10 +83,10 @@
                 <h2>Main Content Area</h2>
                 <p>This is the main content of my page.</p>
                 <div id="userInput">
-                    <label for="Country">Country:</label>
-                    <input type="text" id="Country" name="Country"><br><br>
+                    <label for="">Country:</label>
+                    <input type="text" id="Country" name="Country">
                     <label for="City">City:</label>
-                    <input type="text" id="City" name="City"><br><br>
+                    <input type="text" id="City" name="City">
                     <button id="inputButton">Submit</button>
                 </div><br>
                 <img src="example.jpg" alt="Example Image">
@@ -100,8 +100,8 @@
 
     <script>
         const button = document.querySelector('#button1');
-        const nav1 = document.querySelector('header nav');
         const remove = document.querySelector('#removeSidebar');
+        const nav1 = document.querySelector('header nav');
         button.addEventListener('click', () => {
             nav1.classList.toggle('visible');
         });
