@@ -22,6 +22,7 @@
 
         #mainContent {
             display: flex;
+            height: 100vh;
             margin: 0px 10px;
             flex-direction: column;
         }
@@ -58,6 +59,18 @@
             flex-direction: column;
             align-items: flex-start;
         }
+
+        main {
+            display: flex;
+            width: 100vh;
+            flex-grow: 1;
+        }
+
+
+        footer {
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 
@@ -80,15 +93,26 @@
         <button type="button" id="button1">Klik hier</button>
         <div id="mainContent">
             <main>
-                <h2>Main Content Area</h2>
-                <p>This is the main content of my page.</p>
-                <div id="userInput">
-                    <label for="">Country:</label>
-                    <input type="text" id="Country" name="Country">
-                    <label for="City">City:</label>
-                    <input type="text" id="City" name="City">
-                    <button id="inputButton">Submit</button>
-                </div><br>
+                <div id="leftSide">
+                    <h2>Main Content Area</h2>
+                    <p>This is the main content of my page.</p>
+                    <div id="userInput">
+                        <label for="Country">Country:</label>
+                        <input type="text" id="Country" name="Country">
+                        <label for="City">City:</label>
+                        <input type="text" id="City" name="City"><br>
+                        <button id="inputButton">Submit</button>
+                    </div><br>
+                </div>
+                <div id="rightSide">
+                    <ul id="weatherData">
+                        <li id="preSum"></li>
+                        <li id="maxTemp"></li>
+                        <li id="minTemp"></li>
+                        <li id="date"></li>
+                        <li id="weatherCode"></li>
+                    </ul>
+                </div>
                 <!-- <img src="example.jpg" alt="Example Image"> -->
             </main>
 
