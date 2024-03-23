@@ -17,11 +17,12 @@ remove.addEventListener('click', () => {
 });
 
 function setData(name, value) {
-  const result = {
+  const results = {
     li: name,
     val: value
   }
-  console.log(result.li, result.val);
+  document.getElementById(results.li).innerText = results.val;
+  console.log(results.li, results.val);
 }
 
 // "https://api.open-meteo.com/v1/forecast?latitude=52.305554&longitude=4.6926644&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin"
