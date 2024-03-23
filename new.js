@@ -17,11 +17,21 @@ remove.addEventListener('click', () => {
 });
 
 function setData(name, value) {
+  const weatherCode = {
+    0: 'Clear sky',
+    1: 'Mainly clear',
+    2: 'Partly cloudy',
+    3: 'Overcast',
+    61: 'Slight rain'
+  };
   const results = {
     li: name,
     val: value
+  };
+  if (name == 'weather_code') {
+    for(let )
   }
-  document.getElementById(results.li).innerText = results.li + ' ' + results.val;
+    document.getElementById(results.li).innerText = results.li + ' ' + results.val;
   console.log(results.li, results.val);
 }
 
