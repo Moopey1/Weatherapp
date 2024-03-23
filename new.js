@@ -16,17 +16,25 @@ remove.addEventListener('click', () => {
   nav1.classList.remove('visible');
 });
 
+function setData(name, value) {
+  const result = {
+    li: name,
+    val: value
+  }
+  console.log(result.li, result.val);
+}
+
 // "https://api.open-meteo.com/v1/forecast?latitude=52.305554&longitude=4.6926644&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin"
 async function weatherData(params) {
   const response =
     await fetch(`https://api.open-meteo.com/v1/forecast?${params}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin`);
   const json1 = await response.json();
-  console.log(Object.entries(json1)[8]);
+  // console.log(Object.entries(json1)[8]);
   const daily = Object.entries(json1)[8];
-  for (const [key, value] of Object.entries(daily) ) {
-    console.log(key, value);
-    
-  }
+  const object = Object.entries(daily[1]);
+  object.forEach(element => {
+    setData(element[0], element[1][1]);
+  });
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
