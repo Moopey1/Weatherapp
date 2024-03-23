@@ -21,7 +21,7 @@ function setData(name, value) {
     li: name,
     val: value
   }
-  document.getElementById(results.li).innerText = results.val;
+  document.getElementById(results.li).innerText = results.li + ' ' + results.val;
   console.log(results.li, results.val);
 }
 
