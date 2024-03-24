@@ -56,7 +56,7 @@ function setData(name, value) {
       if (key == value) {
         name = weatherCode[key];
         // console.log(results.val);
-        document.getElementById('weather_code').innerText = name + ' ' + value;
+        document.getElementById('weather_code').innerText = name;
       }
     }
   }
