@@ -29,9 +29,13 @@ function setData(name, value) {
     val: value
   };
   if (name == 'weather_code') {
-    for(let )
+    for (const key in weatherCode) {
+      if (key == value) {
+        console.log(weatherCode[key]);
+      }
+    }
   }
-    document.getElementById(results.li).innerText = results.li + ' ' + results.val;
+  document.getElementById(results.li).innerText = results.li + ' ' + results.val;
   console.log(results.li, results.val);
 }
 
