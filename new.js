@@ -1,6 +1,7 @@
 // bewaar het antwoord in localstorage
 // met fetch options objecten maken die gebruiker kan invoeren
 //https://publicapis.io/nominatim-api
+// https://www.weer.nl/
 import { dailyWeather } from './dailyWeather.js';
 
 const button = document.querySelector('#button1');
