@@ -1,18 +1,20 @@
 // bewaar het antwoord in localstorage
 // met fetch options objecten maken die gebruiker kan invoeren
 //https://publicapis.io/nominatim-api
+import { dailyWeather } from './dailyWeather.js';
 
 const button = document.querySelector('#button1');
 const nav1 = document.querySelector('header nav');
 const remove = document.querySelector('#removeSidebar');
 const city = document.querySelector('#City');
 const inputButton = document.querySelector('#inputButton');
+const rightSide = document.querySelector('#rightSide');
 
 const weatherCode = {
-  0:  'Clear sky',
-  1:  'Mainly clear',
-  2:  'Partly cloudy',
-  3:  'Overcast',
+  0: 'Clear sky',
+  1: 'Mainly clear',
+  2: 'Partly cloudy',
+  3: 'Overcast',
   45: 'Fog',
   46: 'Depositing rime fog',
   51: 'Light drizzle',
@@ -47,38 +49,39 @@ remove.addEventListener('click', () => {
   nav1.classList.remove('visible');
 });
 
-// sets data from API in dom 
-// loops through weather code object and sets the code
-function setData(name, value) {
-  document.getElementById(name).innerText = name + ' ' + value;
-  if (name == 'weather_code') {
-    for (let key in weatherCode) {
-      if (key == value) {
-        name = weatherCode[key];
-        // console.log(results.val);
-        document.getElementById('weather_code').innerText = name;
+function setData(object) {
+  object.map((array) => {
+    const type = array[0];
+    let data = array[1][0];
+    console.log(type, data);
+    if (type == 'weather_code') {
+      for (let key in weatherCode) {
+        if (key == data) {
+          data = weatherCode[key];
+        }
       }
     }
-  }
+    const pType = document.createElement('p').innerText = 'Type: ' + type + ' ';
+    const pData = document.createElement('p').innerText = 'Data: ' + data;
+    const br = document.createElement('br');
+    rightSide.append(pType, br, pData, br);
+    // Creating an instance of MyClass
+  });
+  const myObject = new dailyWeather();
+  rightSide.append(myObject);
 }
 // calls weather API, takes data and calls setData to set data in DOM
 // "https://api.open-meteo.com/v1/forecast?latitude=52.305554&longitude=4.6926644&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin"
 async function weatherData(params) {
   const response =
-    await fetch(`https://api.open-meteo.com/v1/forecast?${params}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin`);
+    await fetch(`https://api.open-meteo.com/v1/forecast?${params}&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&timezone=Europe%2FBerlin`);
   const json1 = await response.json();
-  // console.log(Object.entries(json1)[8]);
+  // console.log(json1);
   const daily = Object.entries(json1)[8];
+  console.log(daily[1]);
   const object = Object.entries(daily[1]);
   console.log(object);
-  // loops through weather data, gets data type and wanted date of data
-  // [1][0] = today, [1][1] = tomorrow, [1][2] = day after tomorrow etc, etc 
-  object.forEach(element => {
-    const type = element[0];
-    const value = element[1][1];
-    console.log(type, value);
-    setData(type, value);
-  });
+  setData(object);
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }

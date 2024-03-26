@@ -71,13 +71,36 @@
             flex-grow: 0;
             flex-shrink: 0;
         }
+
+        .dailyWeather {
+            width: 450px;
+            height: 500px;
+            /* background-color: blue; */
+            display: block;
+        }
+
+        #top {
+            height: 250px;
+            background-color: blue;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            display: block;
+        }
+
+        #bottom {
+            height: 250px;
+            background-color: white;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            display: block;
+        }
     </style>
 </head>
 
 <body>
     <div id="app">
         <header>
-            <nav>
+            <nav class="visible">
                 <div id="h1Button">
                     <h1>Welcome to My Website</h1>
                     <button type="button" id="removeSidebar">x</button>
@@ -105,13 +128,13 @@
                     </div><br>
                 </div>
                 <div id="rightSide">
-                    <ul id="weatherData">
+                    <!-- <ul id="weatherData">
                         <li id="time"></li>
                         <li id="weather_code"></li>
                         <li id="temperature_2m_max"></li>
                         <li id="temperature_2m_min"></li>
                         <li id="precipitation_sum"></li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <!-- <img src="example.jpg" alt="Example Image"> -->
             </main>
