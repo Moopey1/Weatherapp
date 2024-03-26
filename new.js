@@ -51,7 +51,7 @@ remove.addEventListener('click', () => {
 });
 
 function setData(object) {
-  object.map((array) => {
+  object.forEach((array) => {
     const type = array[0];
     let data = array[1][0];
     console.log(type, data);
@@ -62,11 +62,11 @@ function setData(object) {
         }
       }
     }
+    // Creating an instance of MyClass
     const pType = document.createElement('p').innerText = 'Type: ' + type + ' ';
     const pData = document.createElement('p').innerText = 'Data: ' + data;
     const br = document.createElement('br');
     rightSide.append(pType, br, pData, br);
-    // Creating an instance of MyClass
   });
   const myObject = new dailyWeather();
   rightSide.append(myObject);
