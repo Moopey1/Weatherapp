@@ -4,27 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Basic HTML Page</title>
+    <title>Weather</title>
     <!-- You can link your CSS files here -->
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <!-- You can embed your CSS styles here -->
     <style>
         /* Your CSS styles go here */
+        :root {
+            --accentColor: #D84339;
+            --background: #F4F2F0;
+            --silver: #C8D7D2;
+            --black: #373234;
+        }
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: lightgrey;
+            background-color: var(--background);
         }
 
         #app {
             display: flex;
         }
 
+        .container {
+            width: 100%;
+        }
+
         #mainContent {
             display: flex;
+            color: var(--black);
+            margin: 0;
             height: 100vh;
-            margin: 0px 10px;
             flex-direction: column;
+        }
+
+        #topNav {
+            height: 5vh;
+            background-color: var(--accentColor); 
+            display: block;
         }
 
         nav {
@@ -32,7 +49,7 @@
             padding: 20px;
             width: 40vh;
             height: 100vh;
-            background-color: white;
+            background-color: var(--silver);
         }
 
         nav h1 {
@@ -66,6 +83,9 @@
             flex-grow: 1;
         }
 
+        #leftSide {
+            margin: 0px 10px;
+        }
 
         footer {
             flex-grow: 0;
@@ -75,7 +95,6 @@
         .dailyWeather {
             width: 450px;
             height: 500px;
-            /* background-color: blue; */
             display: block;
         }
 
@@ -100,7 +119,7 @@
 <body>
     <div id="app">
         <header>
-            <nav class="visible">
+            <nav>
                 <div id="h1Button">
                     <h1>Welcome to My Website</h1>
                     <button type="button" id="removeSidebar">x</button>
@@ -114,7 +133,24 @@
             </nav>
         </header>
         <button type="button" id="button1">Klik hier</button>
-        <div id="mainContent">
+        <div id="mainContent" class="container">
+            <nav id="topNav" class="container">
+                <div id="navContent">
+                    <div id="logo"></div>
+                    <div id="links">
+                        <div id="home">
+                            <a href="#">Home</a>
+                        </div>
+                        <div id="weather">
+                            <a href="weather">Weather</a>
+                        </div>
+                        <div id="filler/rain">
+                            <a href="radar">Radar</a>
+                        </div>
+                    </div>
+                    <div id="currentCity"></div>
+                </div>
+            </nav>
             <main>
                 <div id="leftSide">
                     <h2>Main Content Area</h2>
@@ -128,13 +164,7 @@
                     </div><br>
                 </div>
                 <div id="rightSide">
-                    <!-- <ul id="weatherData">
-                        <li id="time"></li>
-                        <li id="weather_code"></li>
-                        <li id="temperature_2m_max"></li>
-                        <li id="temperature_2m_min"></li>
-                        <li id="precipitation_sum"></li>
-                    </ul> -->
+        
                 </div>
                 <!-- <img src="example.jpg" alt="Example Image"> -->
             </main>
