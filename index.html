@@ -13,13 +13,14 @@
         :root {
             --accentColor: #D84339;
             --background: #F4F2F0;
-            --silver: #C8D7D2;
+            --silver: rgb(200, 215, 210);
             --black: #373234;
         }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: var(--background);
+            background-color: var(--black);
         }
 
         #app {
@@ -32,7 +33,7 @@
 
         #mainContent {
             display: flex;
-            color: var(--black);
+            color: var(--silver);
             margin: 0;
             height: 100vh;
             flex-direction: column;
@@ -40,7 +41,7 @@
 
         #topNav {
             height: 5vh;
-            background-color: var(--accentColor); 
+            background-color: var(--accentColor);
             display: block;
         }
 
@@ -49,7 +50,7 @@
             padding: 20px;
             width: 40vh;
             height: 100vh;
-            background-color: var(--silver);
+            background-color: var(--background);
         }
 
         nav h1 {
@@ -97,21 +98,27 @@
             height: 500px;
             display: block;
         }
-
+ 
+        #weatherWrapper {
+            border-radius:  12px 12px 12px 12px;
+        } 
+        
         #top {
+            border-radius: 12px 12px 0px 0px;
             height: 250px;
-            background-color: blue;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
+            background-color: var(--accentColor);
             display: block;
+            /* border: 1px solid var(--black); */
+            /* box-shadow: 1px 4px 17px rgba(200, 215, 210, 0.12); */
         }
-
+        
         #bottom {
+            border-radius: 0px 0px 12px 12px ;
             height: 250px;
-            background-color: white;
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
+            background-color: var(--black);
             display: block;
+            border: 2px solid var(--accentColor);
+            /* box-shadow: 1px 4px 14px rgba(200, 215, 210, 0.12); */
         }
     </style>
 </head>
@@ -164,7 +171,7 @@
                     </div><br>
                 </div>
                 <div id="rightSide">
-        
+
                 </div>
                 <!-- <img src="example.jpg" alt="Example Image"> -->
             </main>

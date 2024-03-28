@@ -9,11 +9,8 @@ import { dailyWeather } from './dailyWeather.js';
 const button = document.querySelector('#button1');
 const nav1 = document.querySelector('header nav');
 const remove = document.querySelector('#removeSidebar');
-const city = document.querySelector('#City');
 const inputButton = document.querySelector('#inputButton');
 const rightSide = document.querySelector('#rightSide');
-const dataTarget = document.querySelector('#data');
-
 
 const weatherCode = {
   0: 'Clear sky',
@@ -55,49 +52,36 @@ remove.addEventListener('click', () => {
 });
 
 function clearDom() {
-  if (dataTarget.firstChild && dataTarget !== null) {
-    const targets = document.querySelector('.target');
-    const dataClass = document.querySelector('.dailyWeather');
-    data.removeChild(targets, dataClass);
+  const dataTarget = document.querySelector('#data');
+  if (dataTarget !== null) {
+    dataTarget.remove();
   }
 }
 
 function setData(object) {
+  clearDom();
   console.log('Setting data...');
+  const dataWrapper = document.createElement('div');
+  dataWrapper.id = 'data';
   object.forEach((array) => {
     const type = array[0];
     let data = array[1][0];
-    // console.log(type, data);
-    if (type == 'weather_code') {
-      for (let key in weatherCode) {
-        if (key == data) {
-          data = weatherCode[key];
-        }
-      }
+
+    if (type === 'weather_code') {
+      data = weatherCode[data] || data;
     }
-    // Creating an instance of MyClass
 
-    const dataDiv = document.createElement('div');
-    const dataTarget = document.createElement('div');
-    dataTarget.id = 'data';
-    rightSide.append(dataTarget);
-    const pType = document.createElement('p').innerText = 'Type: ' + type + ' ';
-    const pData = document.createElement('p').innerText = 'Data: ' + data;
-    const br = document.createElement('br');
-    dataDiv.append(pType, br, pData, br);
-    dataDiv.className = 'target';
-    dataTarget.append(dataDiv);
+    const pType = document.createElement('p');
+    pType.innerText = 'Type: ' + type + ' ';
+    const pData = document.createElement('p');
+    pData.innerText = 'Data: ' + data;
+
+    dataWrapper.append(pType, pData);
   });
-  const dataTargetId = document.querySelector('#data');
-  const targetWrapper = document.createElement('div');
-  targetWrapper.id = 'targetWrapper'
-  targetWrapper.append(dataTargetId);
   const myObject = new dailyWeather();
-  dataTargetId.append(myObject);
-  rightSide.append(targetWrapper);
+  dataWrapper.append(myObject);
+  rightSide.append(dataWrapper);
 }
-
-
 // calls weather API, takes data and calls setData to set data in DOM
 // "https://api.open-meteo.com/v1/forecast?latitude=52.305554&longitude=4.6926644&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin"
 async function weatherData(params) {
@@ -132,7 +116,6 @@ async function fetchData(params) {
 }
 // listens for submit button click, checks for input and calls fetchData()
 inputButton.addEventListener('click', () => {
-  clearDom();
   const inputCity = document.querySelector('#City').value;
   const inputCountry = document.querySelector('#Country').value;
   if (inputCity !== '' && inputCountry !== '') {
@@ -145,3 +128,4 @@ inputButton.addEventListener('click', () => {
     fetchData(params.toString());
   }
 });
+

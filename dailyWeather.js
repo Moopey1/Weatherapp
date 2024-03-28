@@ -11,13 +11,17 @@ class dailyWeather extends HTMLElement {
     method1() {
         this.className = 'dailyWeather';
         
+        const wrapper = document.createElement('div');
+        wrapper.id = 'weatherWrapper';
+
         const top = document.createElement('div');
         top.id = 'top';
         
         const bottom = document.createElement('div');
         bottom.id = 'bottom';
 
-        this.append(top, bottom);
+        wrapper.append(top, bottom);
+        this.append(wrapper);
         console.log(`Method1 called: ${this.property1}`);
     }
 
