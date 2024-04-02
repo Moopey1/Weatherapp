@@ -63,22 +63,16 @@ function setData(object) {
   console.log('Setting data...');
   const dataWrapper = document.createElement('div');
   dataWrapper.id = 'data';
-  object.forEach((array) => {
+  const test = object.map((array) => {
     const type = array[0];
     let data = array[1][0];
-
     if (type === 'weather_code') {
       data = weatherCode[data] || data;
     }
-
-    const pType = document.createElement('p');
-    pType.innerText = 'Type: ' + type + ' ';
-    const pData = document.createElement('p');
-    pData.innerText = 'Data: ' + data;
-
-    dataWrapper.append(pType, pData);
+    return [type, data];
   });
-  const myObject = new dailyWeather();
+  console.log(test);
+  const myObject = new dailyWeather(test);
   dataWrapper.append(myObject);
   rightSide.append(dataWrapper);
 }
