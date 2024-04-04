@@ -50,5 +50,25 @@ await fetch(`https://nominatim.openstreetmap.org/search.php?${params}`)
 console.log(test0);
 fetchData();
 
-
-
+///////////////////////////////////
+// graveyard //////////////////////
+///////////////////////////////////
+function setData(object) {
+  clearDom();
+  console.log('Setting data...');
+  const dataWrapper = document.createElement('div');
+  dataWrapper.id = 'data';
+  console.log(object);
+  const output = object.map((array) => {
+    const type = array[0];
+    let data = array[1][0];
+    if (type === 'weather_code') {
+      data = weatherCode[data] || data;
+    }
+    return [type, data];
+  });
+  console.log(output);
+  const myObject = new dailyWeather(output);
+  dataWrapper.append(myObject);
+  rightSide.append(dataWrapper);
+}

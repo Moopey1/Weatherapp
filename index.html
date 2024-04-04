@@ -94,7 +94,7 @@
         }
 
         .dailyWeather {
-            width: 450px;
+            width: 500px;
             height: 500px;
             margin: 10px;
             display: block;
@@ -106,14 +106,24 @@
         
         #top {
             border-radius: 12px 12px 0px 0px;
-            height: 250px;
+            height: 225px;
             background-color: var(--accentColor);
-            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+        }
+
+        #topWrapper {
+            height: 200px;
+            width: 450px;
+            padding-top: 25px;  
+            padding-left: 25px;
+            padding-right: 25px;
         }
         
         #bottom {
             border-radius: 0px 0px 12px 12px ;
-            height: 250px;
+            height: 275px;
             background-color: var(--black);
             border: 2px solid var(--accentColor);
             display: block;

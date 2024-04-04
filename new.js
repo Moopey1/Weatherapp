@@ -3,6 +3,7 @@
 //https://publicapis.io/nominatim-api
 // https://www.weer.nl/
 // https://www.weerplaza.nl/weerwidgets/
+// https://appshots.design/apps/nothing-weather-komponent-app-shot-nothing_weather_
 // this.childNodes().forEach(node => ... node.remove()) 
 import { dailyWeather } from './dailyWeather.js';
 
@@ -57,28 +58,22 @@ function clearDom() {
     dataTarget.remove();
   }
 }
-
-function setData(object) {
+// calls clearDom, creates div for dailyWeather class
+// maps through object, gets type name and changes int to weathercode
+// returns new array with today's data
+function setData(object, cityName) {
   clearDom();
   console.log('Setting data...');
   const dataWrapper = document.createElement('div');
   dataWrapper.id = 'data';
-  const test = object.map((array) => {
-    const type = array[0];
-    let data = array[1][0];
-    if (type === 'weather_code') {
-      data = weatherCode[data] || data;
-    }
-    return [type, data];
-  });
-  console.log(test);
-  const myObject = new dailyWeather(test);
+  console.log(object);
+  const myObject = new dailyWeather(object, cityName);
   dataWrapper.append(myObject);
   rightSide.append(dataWrapper);
 }
 // calls weather API, takes data and calls setData to set data in DOM
 // "https://api.open-meteo.com/v1/forecast?latitude=52.305554&longitude=4.6926644&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin"
-async function weatherData(params) {
+async function weatherData(params, cityName) {
   const response =
     await fetch(`https://api.open-meteo.com/v1/forecast?${params}&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&timezone=Europe%2FBerlin`);
   const json1 = await response.json();
@@ -87,13 +82,13 @@ async function weatherData(params) {
   console.log(daily[1]);
   const object = Object.entries(daily[1]);
   console.log(object);
-  setData(object);
+  setData(object, cityName);
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
 }
 // gets the coordinates of the city with nominatim API, calls weatherData() with coordinates
-async function fetchData(params) {
+async function fetchData(params, cityName) {
   const response =
     await fetch(`https://nominatim.openstreetmap.org/search?${params}`);
   let json2 = await response.json();
@@ -103,7 +98,7 @@ async function fetchData(params) {
     latitude: json2.lat,
     longitude: json2.lon
   });
-  weatherData((params1.toString()));
+  weatherData((params1.toString()), cityName);
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
@@ -118,8 +113,8 @@ inputButton.addEventListener('click', () => {
       country: inputCountry,
       format: 'jsonv2',
     });
-    console.log(params.toString());
-    fetchData(params.toString());
+    fetchData(params.toString(), params.get('city'));
+    console.log(params.toString(), params.get('city'));
   }
 });
 
