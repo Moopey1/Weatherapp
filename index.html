@@ -15,6 +15,7 @@
             --background: #F4F2F0;
             --silver: rgb(200, 215, 210);
             --black: #373234;
+            --elementBackground: #524A4D;
         }
 
         body {
@@ -33,7 +34,7 @@
 
         #mainContent {
             display: flex;
-            color: var(--silver);
+            color: var(--background);
             margin: 0;
             height: 100vh;
             flex-direction: column;
@@ -41,7 +42,7 @@
 
         #topNav {
             height: 5vh;
-            background-color: var(--accentColor);
+            background-color: var(--background);
             display: block;
         }
 
@@ -107,7 +108,10 @@
         #top {
             border-radius: 12px 12px 0px 0px;
             height: 225px;
-            background-color: var(--accentColor);
+            background-color: var(--elementBackground);
+            /* border: 2px solid var(--accentColor); */
+            color: var(--background);
+            border-bottom: 0;
             display: flex;
             justify-content: center;
             align-items: end;
@@ -124,8 +128,9 @@
         #bottom {
             border-radius: 0px 0px 12px 12px ;
             height: 275px;
-            background-color: var(--black);
-            border: 2px solid var(--accentColor);
+            background-color: var(--elementBackground);
+            /* border: 2px solid var(--accentColor); */
+            border-top: 0;
             display: block;
         }
     </style>
@@ -149,7 +154,7 @@
         </header>
         <button type="button" id="button1">Klik hier</button>
         <div id="mainContent" class="container">
-            <nav id="topNav" class="container">
+            <!-- <nav id="topNav" class="container">
                 <div id="navContent">
                     <div id="logo"></div>
                     <div id="links">
@@ -165,7 +170,7 @@
                     </div>
                     <div id="currentCity"></div>
                 </div>
-            </nav>
+            </nav> -->
             <main>
                 <div id="leftSide">
                     <h2>Main Content Area</h2>

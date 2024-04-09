@@ -14,34 +14,34 @@ const inputButton = document.querySelector('#inputButton');
 const rightSide = document.querySelector('#rightSide');
 
 const weatherCode = {
-  0: 'Clear sky',
-  1: 'Mainly clear',
-  2: 'Partly cloudy',
-  3: 'Overcast',
-  45: 'Fog',
-  46: 'Depositing rime fog',
-  51: 'Light drizzle',
-  53: 'Moderate drizzle',
-  55: 'Dense drizzle',
-  56: 'Light freezing drizzle',
-  57: 'Dense freezing drizzle',
-  61: 'Slight rain',
-  63: 'Moderate rain',
-  65: 'Heavy rain',
-  66: 'Light freezing rain',
-  67: 'Heavy freezing rain',
-  71: 'Slight snow fall',
-  73: 'Moderate snow fall',
-  75: 'Heavy snow fall',
-  77: 'Snow grains',
-  80: 'Slight rain showers',
-  81: 'Moderate rain showers',
-  82: 'Violent rain showers',
-  85: 'Slight snow showers',
-  86: 'Heavy snow showers',
-  95: 'Thunderstorm',
-  96: 'Thunderstorm with slight hail',
-  99: 'Thunderstorm with heavy hail'
+  0:  { code: 'Clear sky', png: 'V2_icons/large/png/10000_clear_large.png' },
+  1:  { code: 'Mainly clear', png: 'V2_icons/large/png/11000_mostly_clear_large.png' },
+  2:  { code: 'Partly cloudy', png: 'V2_icons/large/png/11010_partly_cloudy_large.png' },
+  3:  { code: 'Overcast', png: 'V2_icons/large/png/10010_cloudy_large.png' }, 
+  45: { code: 'Fog', png: 'V2_icons/large/png/20000_fog_large.png' },
+  46: { code: 'Depositing rime fog', png: 'V2_icons/large/png/71030_wintry_mix_large.png' },
+  51: { code: 'Light drizzle', png: 'V2_icons/large/png/42040_drizzle_partly_cloudy_large.png' } ,
+  53: { code: 'Moderate drizzle', png: '' }, 
+  55: { code: 'Dense drizzle', png: '' },
+  56: { code: 'Light freezing drizzle', png: '' },
+  57: { code: 'Dense freezing drizzle', png: '' },
+  61: { code: 'Slight rain', png: '' },
+  63: { code: 'Moderate rain', png: '' },
+  65: { code: 'Heavy rain', png: '' },
+  66: { code: 'Light freezing rain', png: '' },
+  67: { code: 'Heavy freezing rain', png: '' },
+  71: { code: 'Slight snow fall', png: '' }, 
+  73: { code: 'Moderate snow fall', png: '' },
+  75: { code: 'Heavy snow fall', png: '' },
+  77: { code: 'Snow grains', png: '' },
+  80: { code: 'Slight rain showers', png: '' },
+  81: { code: 'Moderate rain showers', png: '' },
+  82: { code: 'Violent rain showers', png: '' },
+  85: { code: 'Slight snow showers', png: '' },
+  86: { code: 'Heavy snow showers', png: '' },
+  95: { code: 'Thunderstorm', png: 'V2_icons/large/png/80000_tstorm_large@2x.png' },
+  96: { code: 'Thunderstorm with slight hail', png: '' }, 
+  99: { code: 'Thunderstorm with heavy hail', png: ''}
 };
 
 button.addEventListener('click', () => {
@@ -67,7 +67,7 @@ function setData(object, cityName) {
   const dataWrapper = document.createElement('div');
   dataWrapper.id = 'data';
   console.log(object);
-  const myObject = new dailyWeather(object, cityName);
+  const myObject = new dailyWeather(object, cityName, weatherCode);
   dataWrapper.append(myObject);
   rightSide.append(dataWrapper);
 }
