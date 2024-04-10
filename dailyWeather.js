@@ -14,7 +14,7 @@ class dailyWeather extends HTMLElement {
         const wrapper = document.createElement('div');
         const top = document.createElement('div');
         const bottom = document.createElement('div');
-        
+
         this.className = 'dailyWeather';
         wrapper.id = 'weatherWrapper';
         top.id = 'top';
@@ -23,7 +23,7 @@ class dailyWeather extends HTMLElement {
         wrapper.append(top, bottom);
         this.append(wrapper);
     }
-    
+
     get weatherCodes() {
         return this.data[1];
     }
@@ -43,12 +43,12 @@ class dailyWeather extends HTMLElement {
     }
 
     todayCode(weatherCode) {
-        const code = this.weatherCodes; 
+        const code = this.weatherCodes;
         let arr = [];
         let png;
         let today = code[1][0];
         png = weatherCode[today].png;
-        today = weatherCode[today].code || today
+        today = weatherCode[today].code || today;
         arr.push(today, png);
         return arr;
     }
@@ -58,25 +58,51 @@ class dailyWeather extends HTMLElement {
         const maxTempToday = maxTemp[1][0];
         const todaysCode = this.todayCode(this.weatherCode);
 
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const d = new Date();
+        let day = d.getDate();
+        let month = months[d.getMonth()];
+        let year = d.getFullYear();
+        let hour = d.getHours();
+        let minute; 
+
+        if (d.getMinutes() < 10) {
+            minute = "0" + d.getMinutes(); 
+        } else {
+            minute = d.getMinutes();
+        }
+
         const top = this.querySelector('#top');
+        const bottom = this.querySelector('#bottom');
         const topWrapper = document.createElement('div');
+        const bottomWrapper = document.createElement('div');
         const cityTemp = document.createElement('div');
-        
-        const temp = document.createElement('h2');
-        const name = document.createElement('h2');
-        const code = document.createElement('h2');
+
+        const temp = document.createElement('p');
+        temp.id = 'temp';
+        const name = document.createElement('p');
+        name.id = 'name';
+        const code = document.createElement('p');
+        code.id = 'code';
         const png = document.createElement('img');
-        
+        png.id = 'png';
+        const date = document.createElement('p');
+        date.id = 'date';
+
         topWrapper.id = 'topWrapper';
+        bottomWrapper.id = 'bottomWrapper';
         cityTemp.id = 'cityTemp';
         name.innerText = city;
         temp.innerText = maxTempToday + '˚C';
         code.innerText = todaysCode[0];
+        date.innerText = `${day} ${month} ${year} ${hour}:${minute}`;
         png.setAttribute('src', todaysCode[1]);
-        
-        cityTemp.append(name, temp, code, png);
+
+        cityTemp.append(png, temp, code);
         topWrapper.append(cityTemp);
+        bottomWrapper.append(name, date);
         top.append(topWrapper);
+        bottom.append(bottomWrapper);
     }
 
     // Static method (callable on the class itself, not on instances of the class)

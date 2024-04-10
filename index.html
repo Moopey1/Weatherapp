@@ -95,43 +95,65 @@
         }
 
         .dailyWeather {
-            width: 500px;
+            width: 450px;
             height: 500px;
             margin: 10px;
             display: block;
         }
- 
+
         #weatherWrapper {
-            border-radius:  12px 12px 12px 12px;
-        } 
-        
+            border-radius: 12px 12px 12px 12px;
+        }
+
         #top {
             border-radius: 12px 12px 0px 0px;
-            height: 225px;
+            height: 325px;
             background-color: var(--elementBackground);
-            /* border: 2px solid var(--accentColor); */
             color: var(--background);
             border-bottom: 0;
             display: flex;
-            justify-content: center;
-            align-items: end;
+        }
+
+        #temp {
+            font-size: 50px;
+            margin: 10px 0px;
+        }
+        
+        #code {
+            font-size: 25px;
+        }
+
+        #name {
+            margin: 0;
+            height: auto;
         }
 
         #topWrapper {
-            height: 200px;
+            height: auto;
             width: 450px;
-            padding-top: 25px;  
+            padding-top: 25px;
             padding-left: 25px;
             padding-right: 25px;
         }
-        
+
         #bottom {
-            border-radius: 0px 0px 12px 12px ;
-            height: 275px;
+            border-radius: 0px 0px 12px 12px;
+            height: 175px;
             background-color: var(--elementBackground);
-            /* border: 2px solid var(--accentColor); */
             border-top: 0;
-            display: block;
+            display: flex;
+            flex-direction: row;
+        }
+
+        #bottomWrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 18px;
+            width: 450px;
+            padding-left: 25px;
+            padding-right: 25px;
+            padding-bottom: 25px;
         }
     </style>
 </head>
@@ -154,23 +176,6 @@
         </header>
         <button type="button" id="button1">Klik hier</button>
         <div id="mainContent" class="container">
-            <!-- <nav id="topNav" class="container">
-                <div id="navContent">
-                    <div id="logo"></div>
-                    <div id="links">
-                        <div id="home">
-                            <a href="#">Home</a>
-                        </div>
-                        <div id="weather">
-                            <a href="weather">Weather</a>
-                        </div>
-                        <div id="filler/rain">
-                            <a href="radar">Radar</a>
-                        </div>
-                    </div>
-                    <div id="currentCity"></div>
-                </div>
-            </nav> -->
             <main>
                 <div id="leftSide">
                     <h2>Main Content Area</h2>
@@ -184,10 +189,7 @@
                     </div><br>
                 </div>
                 <div id="rightSide">
-
                 </div>
-                
-                <!-- <img src="example.jpg" alt="Example Image"> -->
             </main>
 
             <footer>
