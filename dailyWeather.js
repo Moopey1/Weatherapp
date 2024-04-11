@@ -53,11 +53,7 @@ class dailyWeather extends HTMLElement {
         return arr;
     }
 
-    insertData(city) {
-        const maxTemp = this.maxTemperature;
-        const maxTempToday = maxTemp[1][0];
-        const todaysCode = this.todayCode(this.weatherCode);
-
+    formatDate() {
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const d = new Date();
         let day = d.getDate();
@@ -71,6 +67,15 @@ class dailyWeather extends HTMLElement {
         } else {
             minute = d.getMinutes();
         }
+        const result = `${day} ${month} ${year} ${hour}:${minute}`;
+        return result;
+    }
+
+    insertData(city) {
+        const maxTemp = this.maxTemperature;
+        const maxTempToday = maxTemp[1][0];
+        const todaysCode = this.todayCode(this.weatherCode);
+        const formattedDate = this.formatDate();
 
         const top = this.querySelector('#top');
         const bottom = this.querySelector('#bottom');
@@ -95,7 +100,7 @@ class dailyWeather extends HTMLElement {
         name.innerText = city;
         temp.innerText = maxTempToday + '˚C';
         code.innerText = todaysCode[0];
-        date.innerText = `${day} ${month} ${year} ${hour}:${minute}`;
+        date.innerText = formattedDate;
         png.setAttribute('src', todaysCode[1]);
 
         cityTemp.append(png, temp, code);

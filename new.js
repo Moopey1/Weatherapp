@@ -7,6 +7,7 @@
 // this.childNodes().forEach(node => ... node.remove()) 
 // https://dribbble.com/shots/19207866-Weather-Forecast-Dashboard
 import { dailyWeather } from './dailyWeather.js';
+import { currentWeather } from './currentWeather.js';
 
 const button = document.querySelector('#button1');
 const nav1 = document.querySelector('header nav');
@@ -15,10 +16,10 @@ const inputButton = document.querySelector('#inputButton');
 const rightSide = document.querySelector('#rightSide');
 
 const weatherCode = {
-  0: { code: 'Clear sky', png: 'V2_icons/large/png/10000_clear_large@2x.png' },
-  1: { code: 'Mainly clear', png: 'V2_icons/large/png/11000_mostly_clear_large@2x.png' },
-  2: { code: 'Partly cloudy', png: 'V2_icons/large/png/11010_partly_cloudy_large@2x.png' },
-  3: { code: 'Overcast', png: 'V2_icons/large/png/10010_cloudy_large@2x.png' },
+  0:  { code: 'Clear sky', png: 'V2_icons/large/png/10000_clear_large@2x.png' },
+  1:  { code: 'Mainly clear', png: 'V2_icons/large/png/11000_mostly_clear_large@2x.png' },
+  2:  { code: 'Partly cloudy', png: 'V2_icons/large/png/11010_partly_cloudy_large@2x.png' },
+  3:  { code: 'Overcast', png: 'V2_icons/large/png/10010_cloudy_large@2x.png' },
   45: { code: 'Fog', png: 'V2_icons/large/png/20000_fog_large@2x.png' },
   46: { code: 'Depositing rime fog', png: 'V2_icons/large/png/71030_wintry_mix_large@2x.png' },
   51: { code: 'Light drizzle', png: 'V2_icons/large/png/40000_drizzle_large@2x.png' },
@@ -88,6 +89,16 @@ async function weatherData(params, cityName) {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
 }
+
+async function currentData(params, cityName) {
+  const response = 
+    await fetch(`https://api.open-meteo.com/v1/forecast?${params}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m`);
+  const json3 = await response.json();
+  console.log(Object.entries(json3));
+  const current = Object.entries(json3);
+  // setData(object);
+}
+currentData();
 // gets the coordinates of the city with nominatim API, calls weatherData() with coordinates
 async function fetchData(params, cityName) {
   const response =
@@ -101,6 +112,7 @@ async function fetchData(params, cityName) {
     longitude: json2.lon
   });
   weatherData((params1.toString()), cityName);
+  currentData((params1.toString()),);
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
