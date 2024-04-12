@@ -6,7 +6,7 @@ class dailyWeather extends HTMLElement {
         this.city = city;
         this.weatherCode = weatherCode;
         this.method1();
-        this.logData(data, city);
+        // this.logData(data, city);
         this.insertData(city);
     }
 

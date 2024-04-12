@@ -89,12 +89,24 @@
             margin: 0px 10px;
         }
 
+        #rightSide {
+            display: flex;
+            flex-direction: row;
+        }
+
         footer {
             flex-grow: 0;
             flex-shrink: 0;
         }
 
         .dailyWeather {
+            width: 450px;
+            height: 500px;
+            margin: 10px;
+            display: block;
+        }
+
+        .currentWeather {
             width: 450px;
             height: 500px;
             margin: 10px;
@@ -114,6 +126,33 @@
             display: flex;
         }
 
+        #topCurrent {
+            border-radius: 12px 12px 0px 0px;
+            height: 325px;
+            background-color: var(--elementBackground);
+            color: var(--background);
+            border-bottom: 0;
+            display: flex;
+        }
+
+        #bottomCurrent {
+            border-radius: 0px 0px 12px 12px;
+            height: 175px;
+            background-color: var(--elementBackground);
+            border-top: 0;
+            display: flex;
+            flex-direction: row;
+        }
+
+        #currentNum {
+            font-size: 25px;
+        }
+
+        #currentTemp {
+            font-size: 50px;
+            margin: 10px 0px;
+        }
+
         #temp {
             font-size: 50px;
             margin: 10px 0px;
@@ -128,12 +167,35 @@
             height: auto;
         }
 
+        #currentCity{
+            margin: 0;
+        }
+
         #topWrapper {
             height: auto;
             width: 450px;
             padding-top: 25px;
             padding-left: 25px;
             padding-right: 25px;
+        }
+
+        #topCurrentWrapper {
+            height: auto;
+            width: 450px;
+            padding-top: 25px;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        #bottomCurrentWrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 18px;
+            width: 450px;
+            padding-left: 25px;
+            padding-right: 25px;
+            padding-bottom: 25px;
         }
 
         #bottom {
@@ -182,13 +244,14 @@
                     <p>This is the main content of my page.</p>
                     <div id="userInput">
                         <label for="Country">Country:</label>
-                        <input type="text" id="Country" name="Country">
+                        <input type="text" id="Country" value="Netherlands" name="Country">
                         <label for="City">City:</label>
-                        <input type="text" id="City" name="City"><br>
+                        <input type="text" id="City" value="Hoofddorp" name="City"><br>
                         <button id="inputButton">Submit</button>
                     </div><br>
                 </div>
                 <div id="rightSide">
+                    
                 </div>
             </main>
 
