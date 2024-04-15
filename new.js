@@ -47,7 +47,7 @@ const weatherCode = {
   99: { code: 'Thunderstorm with heavy hail', png: 'V2_icons/large/png/80000_tstorm_large@2x.png' }
 };
 
-const weatherCodeSmall = {
+const weatherNumSmall = {
   0:  { code: 'Clear sky', png: 'V2_icons/large/png/10000_clear_large.png' },
   1:  { code: 'Mainly clear', png: 'V2_icons/large/png/11000_mostly_clear_large.png' },
   2:  { code: 'Partly cloudy', png: 'V2_icons/large/png/11010_partly_cloudy_large.png' },
@@ -103,7 +103,7 @@ function setData(object, cityName) {
   const dataWrapper = document.createElement('div');
   dataWrapper.id = 'data';
   // console.log(object);
-  const myObject = new weeklyWeather(object, cityName, weatherCode);
+  const myObject = new weeklyWeather(object, cityName, weatherNumSmall);
   dataWrapper.append(myObject);
   rightSide.append(dataWrapper);
 }
