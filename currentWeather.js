@@ -9,7 +9,7 @@ class currentWeather extends HTMLElement {
         this.logData(data);
         this.insertCurrentData();
     }
-
+    // creates the 'card' to show the information in
     createCard() {
         const wrapper = document.createElement('div');
         const top = document.createElement('div');
@@ -36,11 +36,11 @@ class currentWeather extends HTMLElement {
         newDiv.id = ID;
         return newDiv;
     }
-
+    // gets the weather data of today
     get current() {
         return this.data[8][1];
     }
-
+    
     get temp() {
         return this.data[8][1].temperature_2m;
     }
@@ -48,7 +48,7 @@ class currentWeather extends HTMLElement {
     get weatherNumber() {
         return this.data[8][1].weather_code;
     }
-
+    // takes the weather number and outputs the corresponding weather alert and png
     todayCode(weatherCode) {
         let code = this.weatherNumber;
         let arr = [];
@@ -58,7 +58,7 @@ class currentWeather extends HTMLElement {
         arr.push(code, png);
         return arr;
     }
-
+    
     createWeatherNumberElement() {
         const num = this.todayCode(this.weatherCode);
         const pNum = document.createElement('p');

@@ -8,6 +8,7 @@
 // https://dribbble.com/shots/19207866-Weather-Forecast-Dashboard
 import { dailyWeather } from './dailyWeather.js';
 import { currentWeather } from './currentWeather.js';
+import { weeklyWeather } from './weekInfo.js';
 
 const button = document.querySelector('#button1');
 const nav1 = document.querySelector('header nav');
@@ -102,13 +103,13 @@ function setData(object, cityName) {
   const dataWrapper = document.createElement('div');
   dataWrapper.id = 'data';
   // console.log(object);
-  const myObject = new dailyWeather(object, cityName, weatherCode);
+  const myObject = new weeklyWeather(object, cityName, weatherCode);
   dataWrapper.append(myObject);
   rightSide.append(dataWrapper);
 }
 
 function setCurrent(object, city) {
-  clearDom();
+  clearDom(); 
   console.log('setting current data...');
   const currentData = document.createElement('div');
   currentData.id = 'currentData';
