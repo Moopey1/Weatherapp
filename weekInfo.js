@@ -33,19 +33,13 @@ class weeklyWeather extends HTMLElement {
     insertData() {
         const time = this.time[1];
         const temp = this.maxTemp[1];
-        const test = [time, temp];
 
-        test.forEach((array) => {
-            array.forEach((element, index) => {
-                if(index == 0) {
-                    console.log(element);
-                }
-                console.log(element);
-            });
+        const bundledData = time.map((item, index) => { 
+            return {number: item, letter: temp[index]}; 
         });
-        // todo
-        // elke waarde in de array's in object doen
-        // bijvoorbeeld element 0 van time en temp bij elkaar 
+        
+        console.log(bundledData);
+
     }
 
     // Static method (callable on the class itself, not on instances of the class)
