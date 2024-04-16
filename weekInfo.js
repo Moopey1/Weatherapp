@@ -35,7 +35,7 @@ class weeklyWeather extends HTMLElement {
         const temp = this.maxTemp[1];
 
         const bundledData = time.map((item, index) => { 
-            return {number: item, letter: temp[index]}; 
+            return { number: item, letter: temp[index] }; 
         });
         
         console.log(bundledData);
