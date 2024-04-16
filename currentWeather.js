@@ -1,10 +1,10 @@
 class currentWeather extends HTMLElement {
     // Constructor method to initialize new objects
-    constructor(data, city, weatherCode) {
+    constructor(data, city, weatherNum) {
         super();
         this.data = data;
         this.city = city;
-        this.weatherCode = weatherCode;
+        this.weathercijfer = weatherNum;
         this.createCard();
         this.logData(data);
         this.insertCurrentData();
@@ -49,18 +49,18 @@ class currentWeather extends HTMLElement {
         return this.data[8][1].weather_code;
     }
     // takes the weather number and outputs the corresponding weather alert and png
-    todayCode(weatherCode) {
+    todayCode(weather) {
         let code = this.weatherNumber;
         let arr = [];
         let png;
-        png = weatherCode[code].png;
-        code = weatherCode[code].code || code;
+        png = weather[code].png;
+        code = weather[code].code || code;
         arr.push(code, png);
         return arr;
     }
     
     createWeatherNumberElement() {
-        const num = this.todayCode(this.weatherCode);
+        const num = this.todayCode(this.weathercijfer);
         const pNum = document.createElement('p');
         pNum.id = 'currentNum';
         pNum.innerText = num[0];
@@ -68,7 +68,8 @@ class currentWeather extends HTMLElement {
     }
 
     createWeatherPng() {
-        const num = this.todayCode(this.weatherCode);
+        const num = this.todayCode(this.weathercijfer);
+        console.log(num);
         const img = document.createElement('img');
         img.setAttribute('src', num[1]);
         return img;

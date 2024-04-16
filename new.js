@@ -15,6 +15,8 @@ const nav1 = document.querySelector('header nav');
 const remove = document.querySelector('#removeSidebar');
 const inputButton = document.querySelector('#inputButton');
 const rightSide = document.querySelector('#rightSide');
+const currentDataWrapper = document.querySelector('#currentDataWrapper');
+const weekWrapper = document.querySelector('#weekWrapper');
 
 const weatherCode = {
   0:  { code: 'Clear sky', png: 'V2_icons/large/png/10000_clear_large@2x.png' },
@@ -48,34 +50,34 @@ const weatherCode = {
 };
 
 const weatherNumSmall = {
-  0:  { code: 'Clear sky', png: 'V2_icons/large/png/10000_clear_large.png' },
-  1:  { code: 'Mainly clear', png: 'V2_icons/large/png/11000_mostly_clear_large.png' },
-  2:  { code: 'Partly cloudy', png: 'V2_icons/large/png/11010_partly_cloudy_large.png' },
-  3:  { code: 'Overcast', png: 'V2_icons/large/png/10010_cloudy_large.png' },
-  45: { code: 'Fog', png: 'V2_icons/large/png/20000_fog_large.png' },
-  46: { code: 'Depositing rime fog', png: 'V2_icons/large/png/71030_wintry_mix_large.png' },
-  51: { code: 'Light drizzle', png: 'V2_icons/large/png/40000_drizzle_large.png' },
-  53: { code: 'Moderate drizzle', png: 'V2_icons/large/png/40000_drizzle_large.png' },
-  55: { code: 'Dense drizzle', png: 'V2_icons/large/png/40000_drizzle_large.png' },
-  56: { code: 'Light freezing drizzle', png: 'V2_icons/large/png/60000_freezing_rain_drizzle_large.png' },
-  57: { code: 'Dense freezing drizzle', png: 'V2_icons/large/png/60000_freezing_rain_drizzle_large.png' },
-  61: { code: 'Slight rain', png: 'V2_icons/large/png/42000_rain_light_large.png' },
-  63: { code: 'Moderate rain', png: 'V2_icons/large/png/40010_rain_large.png' },
-  65: { code: 'Heavy rain', png: 'V2_icons/large/png/42010_rain_heavy_large.png' },
-  66: { code: 'Light freezing rain', png: 'V2_icons/large/png/62000_freezing_rain_light_large.png' },
-  67: { code: 'Heavy freezing rain', png: 'V2_icons/large/png/60010_freezing_rain_large.png' },
-  71: { code: 'Slight snow fall', png: 'V2_icons/large/png/51000_snow_light_large.png' },
-  73: { code: 'Moderate snow fall', png: 'V2_icons/large/png/50000_snow_large.png' },
-  75: { code: 'Heavy snow fall', png: 'V2_icons/large/png/51010_snow_heavy_large.png' },
-  77: { code: 'Snow grains', png: 'V2_icons/large/png/51220_wintry_mix_large.png' },
-  80: { code: 'Slight rain showers', png: 'V2_icons/large/png/40010_rain_large.png' },
-  81: { code: 'Moderate rain showers', png: 'V2_icons/large/png/42010_rain_heavy_large.png' },
-  82: { code: 'Violent rain showers', png: 'V2_icons/large/png/42010_rain_heavy_large.png' },
-  85: { code: 'Slight snow showers', png: 'V2_icons/large/png/51000_snow_light_large.png' },
-  86: { code: 'Heavy snow showers', png: 'V2_icons/large/png/51010_snow_heavy_large.png' },
-  95: { code: 'Thunderstorm', png: 'V2_icons/large/png/80000_tstorm_large.png' },
-  96: { code: 'Thunderstorm with slight hail', png: 'V2_icons/large/png/80000_tstorm_large.png' },
-  99: { code: 'Thunderstorm with heavy hail', png: 'V2_icons/large/png/80000_tstorm_large.png' }
+  0:  { code: 'Clear sky', png: 'V2_icons/small/png/10000_clear_small@2x.png' },
+  1:  { code: 'Mainly clear', png: 'V2_icons/small/png/11000_mostly_clear_small@2x.png' },
+  2:  { code: 'Partly cloudy', png: 'V2_icons/small/png/11010_partly_cloudy_small@2x.png' },
+  3:  { code: 'Overcast', png: 'V2_icons/small/png/10010_cloudy_small@2x.png' },
+  45: { code: 'Fog', png: 'V2_icons/small/png/20000_fog_small@2x.png' },
+  46: { code: 'Depositing rime fog', png: 'V2_icons/small/png/71030_wintry_mix_small@2x.png' },
+  51: { code: 'Light drizzle', png: 'V2_icons/small/png/40000_drizzle_small@2x.png' },
+  53: { code: 'Moderate drizzle', png: 'V2_icons/small/png/40000_drizzle_small@2x.png' },
+  55: { code: 'Dense drizzle', png: 'V2_icons/small/png/40000_drizzle_small@2x.png' },
+  56: { code: 'Light freezing drizzle', png: 'V2_icons/small/png/60000_freezing_rain_drizzle_small@2x.png' },
+  57: { code: 'Dense freezing drizzle', png: 'V2_icons/small/png/60000_freezing_rain_drizzle_small@2x.png' },
+  61: { code: 'Slight rain', png: 'V2_icons/small/png/42000_rain_light_small@2x.png' },
+  63: { code: 'Moderate rain', png: 'V2_icons/small/png/40010_rain_small@2x.png' },
+  65: { code: 'Heavy rain', png: 'V2_icons/small/png/42010_rain_heavy_small@2x.png' },
+  66: { code: 'Light freezing rain', png: 'V2_icons/small/png/62000_freezing_rain_light_small@2x.png' },
+  67: { code: 'Heavy freezing rain', png: 'V2_icons/small/png/60010_freezing_rain_small@2x.png' },
+  71: { code: 'Slight snow fall', png: 'V2_icons/small/png/51000_snow_light_small@2x.png' },
+  73: { code: 'Moderate snow fall', png: 'V2_icons/small/png/50000_snow_small@2x.png' },
+  75: { code: 'Heavy snow fall', png: 'V2_icons/small/png/51010_snow_heavy_small@2x.png' },
+  77: { code: 'Snow grains', png: 'V2_icons/small/png/51220_wintry_mix_small@2x.png' },
+  80: { code: 'Slight rain showers', png: 'V2_icons/small/png/40010_rain_small@2x.png' },
+  81: { code: 'Moderate rain showers', png: 'V2_icons/small/png/42010_rain_heavy_small@2x.png' },
+  82: { code: 'Violent rain showers', png: 'V2_icons/small/png/42010_rain_heavy_small@2x.png' },
+  85: { code: 'Slight snow showers', png: 'V2_icons/small/png/51000_snow_light_small@2x.png' },
+  86: { code: 'Heavy snow showers', png: 'V2_icons/small/png/51010_snow_heavy_small@2x.png' },
+  95: { code: 'Thunderstorm', png: 'V2_icons/small/png/80000_tstorm_small@2x.png' },
+  96: { code: 'Thunderstorm with slight hail', png: 'V2_icons/small/png/80000_tstorm_small@2x.png' },
+  99: { code: 'Thunderstorm with heavy hail', png: 'V2_icons/small/png/80000_tstorm_small@2x.png' }
 };
 
 button.addEventListener('click', () => {
@@ -105,7 +107,7 @@ function setData(object, cityName) {
   // console.log(object);
   const myObject = new weeklyWeather(object, cityName, weatherNumSmall);
   dataWrapper.append(myObject);
-  rightSide.append(dataWrapper);
+  weekWrapper.append(dataWrapper);
 }
 
 function setCurrent(object, city) {
@@ -115,7 +117,7 @@ function setCurrent(object, city) {
   currentData.id = 'currentData';
   const newCurrent = new currentWeather(object, city, weatherCode);
   currentData.append(newCurrent);
-  rightSide.append(currentData);
+  currentDataWrapper.append(currentData);
 }
 // calls weather API, takes data and calls setData to set data in DOM
 // "https://api.open-meteo.com/v1/forecast?latitude=52.305554&longitude=4.6926644&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin"
