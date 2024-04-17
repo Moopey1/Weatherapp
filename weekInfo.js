@@ -36,16 +36,25 @@ class weeklyWeather extends HTMLElement {
         return this.data[1];
     }
 
-    createParElement(value) {
+    createParElement(value, class_name) {
         const par = document.createElement('p');
-        par.id = value + 'Id';
+        par.className = class_name;
         par.innerText = value;
         return par;
     }
 
+    createTempElement(value) {
+        const par = document.createElement('p');
+        par.className = 'weeklyTemp';
+        par.innerText = value + '˚C';
+        return par;
+    }
+    // takes in the raw date and returns desired date
     changeDate(date) {
         const data = new Date(date);
-        const arr = [];
+        const monthDay = data.getDate();
+        const month = data.getMonth();
+        const day = data.getDay();
         const daysOfWeek = [
             "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
         ];
@@ -53,21 +62,13 @@ class weeklyWeather extends HTMLElement {
             "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
         ];
-
-
-        const monthDay = data.getDate();
-        const month = data.getMonth();
-        const day = data.getDay();
-
-        arr.push(monthDay, months[month], daysOfWeek[day]);
-
-        const returnData = `${monthDay} ${months[month]} ${daysOfWeek[day]}`;
-
-        console.log(returnData);
-
-        return arr;
+        const cardInfo = {
+            dayAndMonth: monthDay + ' ' + months[month],
+            weekDay: daysOfWeek[day]
+        };
+        return cardInfo;
     }
-
+    // creates object with time, temp and weather number
     transformData() {
         const time = this.time[1];
         const temp = this.maxTemp[1];
@@ -79,7 +80,7 @@ class weeklyWeather extends HTMLElement {
 
         return bundledData;
     }
-
+    // creates the list for the information 
     createList() {
         const ul = document.createElement('ul');
         ul.id = 'list';
@@ -91,7 +92,7 @@ class weeklyWeather extends HTMLElement {
         }
         wrapper.append(ul);
     }
-
+    // compares weatherNum with object key and returns the corresponding png's
     numberToPNG() {
         const number = this.weatherNum[1];
         const obj = this.weatherNumber;
@@ -101,7 +102,7 @@ class weeklyWeather extends HTMLElement {
         });
         return pictures;
     }
-
+    // for every png, creates an img tag and returns it
     createImgElement() {
         const numbers = this.numberToPNG();
         const images = numbers.map((element) => {
@@ -111,14 +112,17 @@ class weeklyWeather extends HTMLElement {
         });
         return images;
     }
-
+    // takes png's, loops over object and appends the png's, temperature and date
     insertData() {
         const data = this.transformData();
+        console.log(data);
         const items = this.querySelector('#list').childNodes;
         const pictures = this.createImgElement();
 
         data.forEach((element, index) => {
-            items[index].append(pictures[index], this.createParElement(element.temp), this.changeDate(element.date))
+            items[index].append(pictures[index], this.createTempElement(element.temp),
+            this.createParElement(this.changeDate(element.date).dayAndMonth, 'dayAndMonth'), ' ',
+            this.createParElement(this.changeDate(element.date).weekDay, 'weekDay'));
         });
 
     }

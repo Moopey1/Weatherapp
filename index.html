@@ -19,12 +19,36 @@
         }
 
         #list {
-            margin-top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
             list-style-type: none;
+            height: inherit;
+            margin-top: 0;
+            padding-left: 20px;
+        }
+
+        .weeklyTemp {
+            margin-left: 10px;
+            width: 75px;
+            font-size: 25px;
+        }
+
+        .dayAndMonth {
+            margin-left: 30px;
+        }
+
+        .weekDay {
+            margin-left: 60px;
+        }
+
+        #list li {
+            display: flex;
+            text-align: left;
         }
 
         li p {
-            margin: 0;
+            margin: 10px;
         }
 
         body {
@@ -263,9 +287,8 @@
         <div id="mainContent" class="container">
             <main>
                 <div id="leftSide">
-                    <h2>Main Content Area</h2>
-                    <p>This is the main content of my page.</p>
                     <div id="userInput">
+                        <br>
                         <label for="Country">Country:</label>
                         <input type="text" id="Country" value="Netherlands" name="Country">
                         <label for="City">City:</label>
