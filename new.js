@@ -19,10 +19,10 @@ const currentDataWrapper = document.querySelector('#currentDataWrapper');
 const weekWrapper = document.querySelector('#weekWrapper');
 
 const weatherCode = {
-  0:  { code: 'Clear sky', png: 'V2_icons/large/png/10000_clear_large@2x.png' },
-  1:  { code: 'Mainly clear', png: 'V2_icons/large/png/11000_mostly_clear_large@2x.png' },
-  2:  { code: 'Partly cloudy', png: 'V2_icons/large/png/11010_partly_cloudy_large@2x.png' },
-  3:  { code: 'Overcast', png: 'V2_icons/large/png/10010_cloudy_large@2x.png' },
+  0: { code: 'Clear sky', png: 'V2_icons/large/png/10000_clear_large@2x.png' },
+  1: { code: 'Mainly clear', png: 'V2_icons/large/png/11000_mostly_clear_large@2x.png' },
+  2: { code: 'Partly cloudy', png: 'V2_icons/large/png/11010_partly_cloudy_large@2x.png' },
+  3: { code: 'Overcast', png: 'V2_icons/large/png/10010_cloudy_large@2x.png' },
   45: { code: 'Fog', png: 'V2_icons/large/png/20000_fog_large@2x.png' },
   46: { code: 'Depositing rime fog', png: 'V2_icons/large/png/71030_wintry_mix_large@2x.png' },
   51: { code: 'Light drizzle', png: 'V2_icons/large/png/40000_drizzle_large@2x.png' },
@@ -50,10 +50,10 @@ const weatherCode = {
 };
 
 const weatherNumSmall = {
-  0:  { code: 'Clear sky', png: 'V2_icons/small/png/10000_clear_small@2x.png' },
-  1:  { code: 'Mainly clear', png: 'V2_icons/small/png/11000_mostly_clear_small@2x.png' },
-  2:  { code: 'Partly cloudy', png: 'V2_icons/small/png/11010_partly_cloudy_small@2x.png' },
-  3:  { code: 'Overcast', png: 'V2_icons/small/png/10010_cloudy_small@2x.png' },
+  0: { code: 'Clear sky', png: 'V2_icons/small/png/10000_clear_small@2x.png' },
+  1: { code: 'Mainly clear', png: 'V2_icons/small/png/11000_mostly_clear_small@2x.png' },
+  2: { code: 'Partly cloudy', png: 'V2_icons/small/png/11010_partly_cloudy_small@2x.png' },
+  3: { code: 'Overcast', png: 'V2_icons/small/png/10010_cloudy_small@2x.png' },
   45: { code: 'Fog', png: 'V2_icons/small/png/20000_fog_small@2x.png' },
   46: { code: 'Depositing rime fog', png: 'V2_icons/small/png/71030_wintry_mix_small@2x.png' },
   51: { code: 'Light drizzle', png: 'V2_icons/small/png/40000_drizzle_small@2x.png' },
@@ -78,6 +78,15 @@ const weatherNumSmall = {
   95: { code: 'Thunderstorm', png: 'V2_icons/small/png/80000_tstorm_small@2x.png' },
   96: { code: 'Thunderstorm with slight hail', png: 'V2_icons/small/png/80000_tstorm_small@2x.png' },
   99: { code: 'Thunderstorm with heavy hail', png: 'V2_icons/small/png/80000_tstorm_small@2x.png' }
+};
+
+window.onload = () => {
+  const inputCity = document.querySelector('#city').value;
+  const params = new URLSearchParams({
+    city: inputCity,
+    format: 'jsonv2',
+  });
+  fetchData(params.toString(), params.get('city'));
 };
 
 button.addEventListener('click', () => {
@@ -111,7 +120,7 @@ function setData(object, cityName) {
 }
 
 function setCurrent(object, city) {
-  clearDom(); 
+  clearDom();
   console.log('setting current data...');
   const currentData = document.createElement('div');
   currentData.id = 'currentData';
@@ -137,7 +146,7 @@ async function weatherData(params, cityName) {
 }
 
 async function currentData(params, cityName) {
-  const response = 
+  const response =
     await fetch(`https://api.open-meteo.com/v1/forecast?${params}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m`);
   const json3 = await response.json();
   console.log(Object.entries(json3)[8][1]);
@@ -165,16 +174,23 @@ async function fetchData(params, cityName) {
 }
 // listens for submit button click, checks for input and calls fetchData()
 inputButton.addEventListener('click', () => {
-  const inputCity = document.querySelector('#City').value;
-  const inputCountry = document.querySelector('#Country').value;
-  if (inputCity !== '' && inputCountry !== '') {
+  const inputCity = document.querySelector('#city').value;
+  if (inputCity !== '') {
     const params = new URLSearchParams({
       city: inputCity,
-      country: inputCountry,
       format: 'jsonv2',
     });
     fetchData(params.toString(), params.get('city'));
-    // console.log(params.toString(), params.get('city'));
   }
 });
-
+// listens for keypress (enter) in the input field
+document.querySelector('#city').addEventListener('keypress', (event) => {
+  const inputCity = document.querySelector('#city').value;
+  if (inputCity !== '' && event.key === 'Enter') {
+    const params = new URLSearchParams({
+      city: inputCity,
+      format: 'jsonv2',
+    });
+    fetchData(params.toString(), params.get('city'));
+  }
+});
