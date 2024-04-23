@@ -1,4 +1,4 @@
-1. Error handling bijvoorbeeld als informatie mist zoals bij Saskylakh
-2. Kleuren en styling nawerken
-3. Eventueel informatie van binnenuit vernieuwen ipv elementen vervangen
-4. Misschien met een graph library onderaan een graph van de aankomende week maken.
+Error handling bijvoorbeeld als informatie mist zoals bij Saskylakh. X
+Informatie van binnenuit vernieuwen ipv elementen vervangen.
+Met een graph library onderaan een graph van de aankomende week maken.
+Kleuren en styling nawerken.

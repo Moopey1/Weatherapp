@@ -96,7 +96,7 @@ button.addEventListener('click', () => {
 remove.addEventListener('click', () => {
   nav1.classList.remove('visible');
 });
-
+// clears the DOM ... :D
 function clearDom() {
   const dataTarget = document.querySelector('#data');
   const currentTarget = document.querySelector('#currentData');
@@ -118,7 +118,7 @@ function setData(object, cityName) {
   dataWrapper.append(myObject);
   weekWrapper.append(dataWrapper);
 }
-
+// calls the currentWeather class with weather data
 function setCurrent(object, city) {
   clearDom();
   console.log('setting current data...');
@@ -144,7 +144,7 @@ async function weatherData(params, cityName) {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
 }
-
+// fetches weather API and calls setCurrent function for current data  
 async function currentData(params, cityName) {
   const response =
     await fetch(`https://api.open-meteo.com/v1/forecast?${params}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m`);
@@ -153,7 +153,6 @@ async function currentData(params, cityName) {
   const current = Object.entries(json3);
   setCurrent(current, cityName);
 }
-
 // gets the coordinates of the city with nominatim API, calls weatherData() with coordinates
 async function fetchData(params, cityName) {
   const response =
@@ -172,10 +171,23 @@ async function fetchData(params, cityName) {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
 }
+// checks if input is a number or a invalid string and throws an error
+function handleData(inputValue) {
+  const exp = /^[A-Za-z ]+$/;
+  console.log(exp.test(inputValue));
+  try {
+    if (Number(inputValue)) throw 'a number, please enter a city.'; 
+    if (!exp.test(inputValue)) throw 'is invalid, please enter a city.';
+  }
+  catch (error) {
+    alert('Input is ' + error);
+  }
+}
 // listens for submit button click, checks for input and calls fetchData()
 inputButton.addEventListener('click', () => {
   const inputCity = document.querySelector('#city').value;
   if (inputCity !== '') {
+    handleData(inputCity);
     const params = new URLSearchParams({
       city: inputCity,
       format: 'jsonv2',
@@ -187,6 +199,7 @@ inputButton.addEventListener('click', () => {
 document.querySelector('#city').addEventListener('keypress', (event) => {
   const inputCity = document.querySelector('#city').value;
   if (inputCity !== '' && event.key === 'Enter') {
+    handleData(inputCity);
     const params = new URLSearchParams({
       city: inputCity,
       format: 'jsonv2',
