@@ -105,6 +105,11 @@ function clearDom() {
     currentTarget.remove();
   }
 }
+
+function updateData() {
+  const current = document.querySelector('.currentWeather');
+  console.log(current.temp);
+}
 // calls clearDom, creates div for dailyWeather class
 // maps through object, gets type name and changes int to weathercode
 // returns new array with today's data
@@ -127,6 +132,7 @@ function setCurrent(object, city) {
   const newCurrent = new currentWeather(object, city, weatherCode);
   currentData.append(newCurrent);
   currentDataWrapper.append(currentData);
+  updateData();
 }
 // calls weather API, takes data and calls setData to set data in DOM
 // "https://api.open-meteo.com/v1/forecast?latitude=52.305554&longitude=4.6926644&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin"
@@ -176,7 +182,7 @@ function handleData(inputValue) {
   const exp = /^[A-Za-z ]+$/;
   console.log(exp.test(inputValue));
   try {
-    if (Number(inputValue)) throw 'a number, please enter a city.'; 
+    // if (Number(inputValue)) throw 'a number, please enter a city.'; 
     if (!exp.test(inputValue)) throw 'is invalid, please enter a city.';
   }
   catch (error) {
