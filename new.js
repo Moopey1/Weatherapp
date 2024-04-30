@@ -96,6 +96,7 @@ button.addEventListener('click', () => {
 remove.addEventListener('click', () => {
   nav1.classList.remove('visible');
 });
+
 // clears the DOM ... :D
 function clearDom() {
   const dataTarget = document.querySelector('#data');
@@ -108,8 +109,15 @@ function clearDom() {
 
 function updateData() {
   const current = document.querySelector('.currentWeather');
-  console.log(current.temp);
+  const weekly = document.querySelector('.weeklyWeather')
+  current.resetData();
+  weekly.resetData();
 }
+
+document.querySelector('#button2').addEventListener('click', () => {
+  updateData();
+}); 
+
 // calls clearDom, creates div for dailyWeather class
 // maps through object, gets type name and changes int to weathercode
 // returns new array with today's data
@@ -132,7 +140,6 @@ function setCurrent(object, city) {
   const newCurrent = new currentWeather(object, city, weatherCode);
   currentData.append(newCurrent);
   currentDataWrapper.append(currentData);
-  updateData();
 }
 // calls weather API, takes data and calls setData to set data in DOM
 // "https://api.open-meteo.com/v1/forecast?latitude=52.305554&longitude=4.6926644&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin"
@@ -159,6 +166,7 @@ async function currentData(params, cityName) {
   const current = Object.entries(json3);
   setCurrent(current, cityName);
 }
+
 // gets the coordinates of the city with nominatim API, calls weatherData() with coordinates
 async function fetchData(params, cityName) {
   const response =

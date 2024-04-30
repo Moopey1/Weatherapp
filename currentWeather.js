@@ -6,7 +6,6 @@ class currentWeather extends HTMLElement {
         this.city = city;
         this.weathercijfer = weatherNum;
         this.createCard();
-        this.logData(data);
         this.insertCurrentData();
     }
     // creates the 'card' to show the information in
@@ -40,7 +39,7 @@ class currentWeather extends HTMLElement {
     get current() {
         return this.data[8][1];
     }
-    
+
     get temp() {
         return this.data[8][1].temperature_2m;
     }
@@ -58,7 +57,7 @@ class currentWeather extends HTMLElement {
         arr.push(code, png);
         return arr;
     }
-    
+
     createWeatherNumberElement() {
         const num = this.todayCode(this.weathercijfer);
         const pNum = document.createElement('p');
@@ -100,10 +99,10 @@ class currentWeather extends HTMLElement {
         let month = months[d.getMonth()];
         let year = d.getFullYear();
         let hour = d.getHours();
-        let minute; 
+        let minute;
 
         if (d.getMinutes() < 10) {
-            minute = "0" + d.getMinutes(); 
+            minute = "0" + d.getMinutes();
         } else {
             minute = d.getMinutes();
         }
@@ -111,11 +110,33 @@ class currentWeather extends HTMLElement {
         return newDate;
     }
 
+    bundleData() {
+        console.log('Bundling data...');
+        const array = [];
+        const top = this.querySelector('#topCurrent');
+        const bottom = this.querySelector('#bottomCurrent');
+        array.push(top, bottom);
+        console.log(array);
+        return array;
+    }
+
+    resetData() {
+        const data = this.bundleData();
+        console.log('resetting data...');
+        console.log(`Data in resetData: ${data}`);
+        data.forEach((array) => {
+            while (array.hasChildNodes()) {
+                array.removeChild(array.firstChild);
+            }
+        });
+        this.insertCurrentData();
+    }
+
     insertCurrentData() {
         const top = this.querySelector('#topCurrent');
         const bottom = this.querySelector('#bottomCurrent');
         const topWrapper = this.createDiv('topCurrentWrapper');
-        const bottomWrapper =this.createDiv('bottomCurrentWrapper');
+        const bottomWrapper = this.createDiv('bottomCurrentWrapper');
 
         const tempElement = this.createTempElement();
         const weatherNum = this.createWeatherNumberElement();

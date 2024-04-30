@@ -6,7 +6,6 @@ class weeklyWeather extends HTMLElement {
         this.city = city;
         this.weatherNumber = weatherNumber;
         this.createCard();
-        this.createList();
         this.insertData();
         this.logData(data, city, weatherNumber);
         this.numberToPNG(weatherNumber);
@@ -112,17 +111,30 @@ class weeklyWeather extends HTMLElement {
         });
         return images;
     }
+
+    resetData() {
+        const data = this.querySelector('#weeklyWrapper');
+        console.log('resetting data...');
+        console.log(`Data in resetData: ${data}`);
+
+        while (data.hasChildNodes()) {
+            data.removeChild(data.firstChild);
+        }
+
+        this.insertData();
+    }
     // takes png's, loops over object and appends the png's, temperature and date
     insertData() {
         const data = this.transformData();
+        this.createList();
         console.log(data);
         const items = this.querySelector('#list').childNodes;
         const pictures = this.createImgElement();
 
         data.forEach((element, index) => {
             items[index].append(pictures[index], this.createTempElement(element.temp),
-            this.createParElement(this.changeDate(element.date).dayAndMonth, 'dayAndMonth'), ' ',
-            this.createParElement(this.changeDate(element.date).weekDay, 'weekDay'));
+                this.createParElement(this.changeDate(element.date).dayAndMonth, 'dayAndMonth'), ' ',
+                this.createParElement(this.changeDate(element.date).weekDay, 'weekDay'));
         });
 
     }
