@@ -6,7 +6,6 @@
 // https://appshots.design/apps/nothing-weather-komponent-app-shot-nothing_weather_
 // this.childNodes().forEach(node => ... node.remove()) 
 // https://dribbble.com/shots/19207866-Weather-Forecast-Dashboard
-import { dailyWeather } from './dailyWeather.js';
 import { currentWeather } from './currentWeather.js';
 import { weeklyWeather } from './weekInfo.js';
 
@@ -14,7 +13,6 @@ const button = document.querySelector('#button1');
 const nav1 = document.querySelector('header nav');
 const remove = document.querySelector('#removeSidebar');
 const inputButton = document.querySelector('#inputButton');
-const rightSide = document.querySelector('#rightSide');
 const currentDataWrapper = document.querySelector('#currentDataWrapper');
 const weekWrapper = document.querySelector('#weekWrapper');
 
@@ -109,7 +107,7 @@ function clearDom() {
 
 function updateData() {
   const current = document.querySelector('.currentWeather');
-  const weekly = document.querySelector('.weeklyWeather')
+  const weekly = document.querySelector('.weeklyWeather');
   current.resetData();
   weekly.resetData();
 }
@@ -200,6 +198,9 @@ function handleData(inputValue) {
 // listens for submit button click, checks for input and calls fetchData()
 inputButton.addEventListener('click', () => {
   const inputCity = document.querySelector('#city').value;
+  const current = document.querySelector('.currentWeather');
+  const weekly = document.querySelector('.weeklyWeather');
+  current.newData();
   if (inputCity !== '') {
     handleData(inputCity);
     const params = new URLSearchParams({

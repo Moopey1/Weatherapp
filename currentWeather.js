@@ -132,6 +132,10 @@ class currentWeather extends HTMLElement {
         this.insertCurrentData();
     }
 
+    newData(newData, newCity, newNumber) {
+        console.log(newData, newCity, newNumber);
+    }
+
     insertCurrentData() {
         const top = this.querySelector('#topCurrent');
         const bottom = this.querySelector('#bottomCurrent');

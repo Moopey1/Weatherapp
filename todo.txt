@@ -1,4 +1,4 @@
-Error handling bijvoorbeeld als informatie mist zoals bij Saskylakh. X
+Error handling bijvoorbeeld als informatie mist zoals bij Saskylakh. 
 Informatie van binnenuit vernieuwen ipv elementen vervangen.
 Current weather png aanpassen aan de tijd
 Met een graph library onderaan een graph van de aankomende week maken.
